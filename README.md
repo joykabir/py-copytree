@@ -46,6 +46,6 @@ License
 
 [Zia Kab]: http://joykabir.github.io/
 [MIT License]: LICENSE.md
-[travis-badge]: https://travis-ci.org/joykabir/copytree.svg?branch=develop
-[travis]: https://travis-ci.org/joykabir/copytree
+[travis-badge]: https://travis-ci.org/joykabir/py-copytree.svg?branch=develop
+[travis]: https://travis-ci.org/joykabir/py-copytree
 [copytree]: https://docs.python.org/2/library/shutil.html
