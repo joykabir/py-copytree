@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Author: Zia Kab
+# Author: Ziaul Kabir
+# Date: 20-July-2017
+# Released under MIT license
 
 """
 Implements copytree function for python
