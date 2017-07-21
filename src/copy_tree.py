@@ -50,8 +50,8 @@ def copy_tree(src, dest, ignore=None, symlink=False, force=False):
 
 
     for item in sitems:
-        # If the item is found in ignored patterns
-        # then return to the main loop.
+        # If item is found in ignored patterns
+        # then don't move ahead.
         if item in ignored_names:
             continue
 
@@ -60,7 +60,7 @@ def copy_tree(src, dest, ignore=None, symlink=False, force=False):
 
         # Handle symlink if it is True
         if os.path.islink(sitem):
-            if symlink is True:
+            if symlink:
                 if os.path.lexists(ditem):
                     os.remove(ditem)
                 os.symlink(os.readlink(sitem), ditem)
@@ -70,22 +70,21 @@ def copy_tree(src, dest, ignore=None, symlink=False, force=False):
         elif os.path.isdir(sitem):
             copy_tree(sitem, ditem, ignore, symlink, force)
 
-        # If file exists in the destination, don't copy
-        # If force is True, only then overwrite.
+        # Skip if the file exists in the destination.
+        # Overwite, if force is True
         elif os.path.isfile(ditem):
-            if force is True:
-                print('Overwriting file: {}'.format(repr(ditem)))
+            if force:
+                print('Overwriting destination: {}'.format(repr(ditem)))
                 shutil.copy2(sitem, ditem)
 
-        # Copies a file that does not exists in destination
+        # Copy rest, those do not exists in destination
         else:
-            print('Why')
-            print('Copying file: {}'.format(repr(sitem)))
+            print('Copying: {}'.format(repr(sitem)))
             shutil.copy2(sitem, ditem)
 
 def ignore_patterns(*patterns):
     """
-    List of patterns to ignore.
+    List of patterns to ignore
 
     :param args patterns: Defines a sequence of glob-style patterns
                           to specify what files to ignore.
@@ -102,7 +101,7 @@ def ignore_patterns(*patterns):
 
 def include_patterns(*patterns):
     """
-    List of patterns to include.
+    List of patterns to include
 
     See: https://stackoverflow.com/a/35161407
     There is a bug though in the answer.
